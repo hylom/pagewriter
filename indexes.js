@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var util = require('./util');
+var pwutils = require('./pwutils');
 
 var indexes = {};
 
@@ -14,11 +14,11 @@ var indexes = {};
 var indexes = {};
 
 indexes.getIndex = function getIndex(rpath, callback) {
-  if (!util.validateRelativePath) {
+  if (!pwutils.validateRelativePath) {
     return undefined;
   }
-  var rootDir = util.getConfigValue('rootDir');
-  var indexFiles = util.getConfigValue('indexes');
+  var rootDir = pwutils.getConfigValue('rootDir');
+  var indexFiles = pwutils.getConfigValue('indexes');
 
   apath = path.normalize(path.join(rootDir, rpath));
   for (var i = 0; i < indexFiles.length; i++) {

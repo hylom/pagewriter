@@ -11,9 +11,9 @@ html
     header.navbar.navbar-static-top#top
       .container
         .navbar-header
-          a.navbar-bland(href='#') pagewriter
+          a.navbar-bland(href='/') pagewriter
         nav.collapse.navbar-collapse(role='navigation')
           ul.nav.navbar-nav
-            li: a( href='#') edit
+            li: a(href=page.editUrl) edit
     .container
       block content
