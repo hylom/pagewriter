@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 var indexes = require('../indexes');
-var formatter = require('../formatter/plaintext');
+var formatter = require('../formatter');
 var pwutils = require('../pwutils');
 
 function showPage(req, res, page) {
@@ -13,7 +13,7 @@ function showPage(req, res, page) {
     if (err) {
       return res.send(500);
     }
-    data = formatter.format(data);
+    data = formatter.format(data, page.targetFile.type);
 
     page.toolbar = [
       {href: page.editUrl, title: 'edits'}
@@ -55,7 +55,6 @@ router.get('/', function (req, res) {
   page.path = '/' + indexFile.relativePath;
   page.editUrl = '/' + indexFile.relativePath + '?mode=edit';
   page.targetFile = indexFile;
-  console.log(page)
   showPage(req, res, page);
 });
 

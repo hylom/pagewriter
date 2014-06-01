@@ -22,7 +22,6 @@ indexes.getIndex = function getIndex(rpath, callback) {
 
   apath = path.normalize(path.join(rootDir, rpath));
   for (var i = 0; i < indexFiles.length; i++) {
-    console.log(indexFiles[i]);
     var f = path.join(apath, indexFiles[i]);
     if (fs.existsSync(f)) {
       return {
