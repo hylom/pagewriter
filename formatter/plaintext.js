@@ -13,7 +13,6 @@ formatter.format = function (text) {
     }
   };
 
-  console.log(text);
   return text;
 };
 

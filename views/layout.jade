@@ -2,20 +2,28 @@ doctype html
 html(lang='en')
   head
     title= page.title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    // jQuery
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+
+    // Bootstrap
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/pagewriter.js')
 
   body
     header.navbar.navbar-static-top#top(role='banner')
       .container
         .navbar-header
           a.navbar-brand(href='/') pagewriter
-        p.navbar-text= page.path
+        p.navbar-text: a(href=page.path)= page.targetFile.relativePath
+        p.navbar-text.navbar-right#toolbar-status loaded.
         nav.collapse.navbar-collapse(role='navigation')
           ul.nav.navbar-nav
             each item in page.toolbar
-              li: a(href=item.href)= item.title
+              li: a(href=item.href id=item.id)= item.title
     .container
       block content

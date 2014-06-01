@@ -17,7 +17,10 @@ pwutils.getPageAttr = function (rpath) {
   var root = pwutils.getConfigValue('rootDir');
   var apath = path.normalize(path.join(root, rpath));
   if (fs.existsSync(apath)) {
-    return { pathname: apath, type: path.extname(rpath)};
+    return {
+      pathname: apath,
+      type: path.extname(rpath),
+      relativePath: rpath};
   }
   return undefined;
 }

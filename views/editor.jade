@@ -2,6 +2,6 @@ extends layout
 
 block content
   form(name='contents-edit' id='contents-edit')
-    textarea(name='contents-editor' id='contents-editor')
+    textarea(name='contents-editor' id='contents-editor' pw-path=page.targetFile.relativePath)
       | #{contents}
 
