@@ -25,7 +25,11 @@ indexes.getIndex = function getIndex(rpath, callback) {
     console.log(indexFiles[i]);
     var f = path.join(apath, indexFiles[i]);
     if (fs.existsSync(f)) {
-      return { pathname: f, type: path.extname(indexFiles[i])};
+      return {
+        pathname: f,
+        type: path.extname(indexFiles[i]),
+        relativePath: path.normalize(path.join(rpath, indexFiles[i]))
+      };
     }
   }
   return undefined;

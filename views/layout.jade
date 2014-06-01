@@ -1,19 +1,21 @@
 doctype html
-html
+html(lang='en')
   head
-    title= title
+    title= page.title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 
   body
-    header.navbar.navbar-static-top#top
+    header.navbar.navbar-static-top#top(role='banner')
       .container
         .navbar-header
-          a.navbar-bland(href='/') pagewriter
+          a.navbar-brand(href='/') pagewriter
+        p.navbar-text= page.path
         nav.collapse.navbar-collapse(role='navigation')
           ul.nav.navbar-nav
-            li: a(href=page.editUrl) edit
+            each item in page.toolbar
+              li: a(href=item.href)= item.title
     .container
       block content
