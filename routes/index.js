@@ -2,6 +2,7 @@ var fs = require('fs');
 
 var express = require('express');
 var router = express.Router();
+var url = require('url');
 
 var page = require('../page');
 var indexes = require('../indexes');
@@ -20,7 +21,6 @@ function showPage(req, res, newPage) {
       {href: newPage.editUrl, title: 'edits'}
     ];
     res.render('index', {
-      title: 'Express',
       contents: data,
       page: newPage
     });
@@ -43,9 +43,36 @@ function editPage(req, res, newPage) {
   }
 }
 
+function createPage(req, res, newPage) {
+  var newPage = page.createPage();
+  var targetFile = pwutils.getPageAttr(req.path);
+  newPage.targetFile = targetFile;
+  newPage.editUrl = req.path + '?mode=edit';
+  newPage.path = req.path;
+  newPage.title = newPage.path + ' - pagewriter';
+  newPage.toolbar = [
+    {title: 'save', href: '#', id: 'toolbar-save'}
+  ];
+  res.render('editor', {
+    contents: '',
+    page: newPage
+  });
+}
+
+function showEmptyPage(req, res) {
+  var newPage = page.createPage();
+  newPage.targetFile = pwutils.getPageAttr(req.path);
+  newPage.editUrl = req.path + '?mode=create';
+  newPage.path = req.path;
+  newPage.title = newPage.path + ' - pagewriter';
+  newPage.toolbar = [{title: 'create', href: newPage.editUrl}];
+  res.render('empty', {
+    page: newPage
+  });
+}
+
 /* GET home page. */
 router.get('/', function (req, res) {
-  console.log("?????");
   var indexFile = indexes.getIndex('');
   if (indexFile === undefined) {
     return res.send(500);
@@ -60,30 +87,32 @@ router.get('/', function (req, res) {
 });
 
 /* GET page */
-router.get('/:target', function (req, res) {
-  // validate path
-  console.log("!!!!");
-  var target = req.params.target;
+router.get('/*', function (req, res) {
+  var target = req.path;
   if (!pwutils.validateRelativePath(target)) {
     return res.send(403);
   }
 
+  if (req.query.mode == 'create') {
+    return createPage(req, res);
+  }
+
   // get target file
   var targetFile = pwutils.getPageAttr(target);
-  if (targetFile === undefined) {
-    return res.send(404);
+  if (!fs.existsSync(targetFile.pathname)) {
+    return showEmptyPage(req, res);
   }
 
   var newPage = page.createPage();
   newPage.targetFile = targetFile;
   newPage.editUrl = req.path + '?mode=edit';
-  newPage.path = '/' + target;
+  newPage.path = req.path;
   newPage.title = newPage.path + ' - pagewriter';
 
   if (req.query.mode == 'edit') {
     return editPage(req, res, newPage);
   }
-  showPage(req, res, newPage);
+  return showPage(req, res, newPage);
 });
 
 
