@@ -13,7 +13,7 @@ formatter.format = function (text) {
     }
   };
 
-  return text;
+  return '<div class="body-text">' + text + '</div>';
 };
 
 module.exports = formatter;
