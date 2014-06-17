@@ -1,5 +1,5 @@
 
-var querystring = require('querystring');
+var pwutils = require('../pwutils');
 
 var formatter = {};
 
@@ -34,7 +34,7 @@ formatter.format = function (text) {
     counter++;
     var ret = '<tr>';
     ret += '<td>' + counter + '</td>';
-    ret += '<td><a href="' + directory + querystring.escape(text) + '.txt">'
+    ret += '<td><a href="' + directory + pwutils.escapeFilename(text) + '.txt">'
       + text + '</a></td>\n';
     ret += '</tr>\n';
     return ret;

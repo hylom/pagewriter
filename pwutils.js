@@ -24,6 +24,20 @@ pwutils.getPageAttr = function (rpath) {
     relativePath: rpath};
 }
 
+pwutils.escapeFilename = function (filename) {
+  var retVal;
+  retVal = querystring.escape(filename);
+  retVal = retVal.replace('/', '%2F');
+  return retVal;
+};
+
+pwutils.unescapeFilename = function (filename) {
+  var retVal;
+  retVal = retVal.replace('%2F', '/');
+  retVal = querystring.unescape(filename);
+  return retVal;
+};
+
 /*
  * validate Relative Path
  */
