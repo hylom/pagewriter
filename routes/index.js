@@ -89,7 +89,6 @@ router.get('/', function (req, res) {
 /* GET page */
 router.get('/*', function (req, res) {
   var target = req.path;
-  console.log(target);
   if (!pwutils.validateRelativePath(target)) {
     return res.send(403);
   }
