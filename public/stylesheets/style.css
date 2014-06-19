@@ -25,14 +25,25 @@ a {
   width: 1em;
 }
 
-#contents #text {
-  margin-left: 20px;
+#contents #line-number-box,
+#contents #text,
+#contents .horizontal-number,
+#contents p {
+  line-height: 22px;
 }
 
+#contents #line-number-box {
+}
+
+#contents #text,
 #contents .horizontal-number {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 #contents p {
   margin: 0;
+}
+
+#contents .horizontal-number {
+  margin-bottom: 20px;
 }
