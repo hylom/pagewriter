@@ -20,7 +20,7 @@ function showPage(req, res, newPage) {
     newPage.toolbar = [
       {href: newPage.editUrl, title: 'edits'}
     ];
-    res.render('index', {
+    res.render('format/plaintext', {
       contents: data,
       page: newPage
     });

@@ -19,3 +19,20 @@ a {
 #contents .body-text {
   width: 33em;
 }
+
+#contents #line-number-box {
+  float: left;
+  width: 1em;
+}
+
+#contents #text {
+  margin-left: 20px;
+}
+
+#contents .horizontal-number {
+  margin-left: 20px;
+}
+
+#contents p {
+  margin: 0;
+}
