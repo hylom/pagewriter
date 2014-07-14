@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 var debug = require('debug')('pagewriter');
 var app = require('../app');
+var os = require('os');
+var child_process = require('child_process');
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+if (os.type() === 'Darwin') {
+   var targetUrl = 'http://localhost:' + app.get('port') + '/'
+   child_process.spawn('open', [targetUrl]);   
+}
