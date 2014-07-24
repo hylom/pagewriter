@@ -47,3 +47,17 @@ a {
 #contents .horizontal-number {
   margin-bottom: 20px;
 }
+
+#contents table {
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+#contents tr.chapter {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+#contents tr.chapter td{
+  height: 3em;
+}

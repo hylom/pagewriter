@@ -20,7 +20,13 @@ function showPage(req, res, newPage) {
     newPage.toolbar = [
       {href: newPage.editUrl, title: 'edits'}
     ];
-    res.render('format/plaintext', {
+
+    var template = 'format/toc';
+    if (newPage.targetFile.type === '.txt') {
+      template = 'format/plaintext';
+    }
+
+    res.render(template, {
       contents: data,
       page: newPage
     });

@@ -16,6 +16,8 @@ formatter.format = function (text) {
     }
     if (text.charAt(0) == '#') {
       if (text.charAt(1) == '@') {
+        // @プラグマの処理
+        // directoryプラグマ
         var match = text.match(/^#@directory:\s*(.*?)\s*$/);
         if (match) {
           directory = match[1];
@@ -23,6 +25,12 @@ formatter.format = function (text) {
               && (directory.charAt(directory.length - 1) != '/')) {
             directory = directory + '/';
           }
+        }
+        // chapterプラグマ
+        var match = text.match(/^#@chapter:\s*(.*?)\s*$/);
+        if (match) {
+          var chapter = match[1];
+          return '<tr class="chapter"><td colspan="2">' + chapter + '</td></tr>';
         }
       }
       return '';
