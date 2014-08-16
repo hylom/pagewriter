@@ -5,34 +5,7 @@ block contentsBody
   div#contents
     p.horizontal-number １２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３
     div#line-number-box
-      div.line-number 1
-      div.line-number 2
-      div.line-number 3
-      div.line-number 4
-      div.line-number 5
-      div.line-number 6
-      div.line-number 7
-      div.line-number 8
-      div.line-number 9
-      div.line-number 10
-      div.line-number 1
-      div.line-number 2
-      div.line-number 3
-      div.line-number 4
-      div.line-number 5
-      div.line-number 6
-      div.line-number 7
-      div.line-number 8
-      div.line-number 9
-      div.line-number 10
-      div.line-number 1
-      div.line-number 2
-      div.line-number 3
-      div.line-number 4
-      div.line-number 5
-      div.line-number 6
-      div.line-number 7
-      div.line-number 8
-      div.line-number 9
-      div.line-number 10
+      - var n = 1
+      while n < 100
+        div.line-number= n++
     div#text!= contents

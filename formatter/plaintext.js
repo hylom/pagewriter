@@ -1,8 +1,11 @@
 
+var text2html = require('../text2html/text2html');
 
 var formatter = {};
+var header = '<div class="body-text">';
+var footer = '</div>';
 
-formatter.format = function (text) {
+var rawFormatter = function (text) {
   text = text.replace(/.*/g, formatText);
 
   function formatText(text) {
@@ -13,7 +16,17 @@ formatter.format = function (text) {
     }
   };
 
-  return '<div class="body-text">' + text + '</div>';
+  return header + text + footer;
 };
+
+var newFormatter = function (text) {
+  var lines = text2html.formatText(text);
+  lines.unshift(header);
+  lines.push(footer);
+  return lines.join('');
+}
+
+
+formatter.format = newFormatter;
 
 module.exports = formatter;

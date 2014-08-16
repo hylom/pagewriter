@@ -28,8 +28,20 @@ a {
 #contents #line-number-box,
 #contents #text,
 #contents .horizontal-number,
-#contents p {
+#contents p,
+#contents h1,
+#contents h2,
+#contents h3 {
   line-height: 22px;
+  margin: 0;
+}
+
+#contents h1 {
+  line-height: 64px; /* 3*22-2 */
+}
+#contents h2, 
+#contents h3 { 
+  line-height: 42px; /* 2*22-2 */
 }
 
 #contents #line-number-box {
@@ -40,8 +52,6 @@ a {
   margin-left: 40px;
 }
 
-#contents p {
-  margin: 0;
 }
 
 #contents .horizontal-number {
@@ -60,4 +70,27 @@ a {
 
 #contents tr.chapter td{
   height: 3em;
+}
+
+#contents pre {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#contents h1,
+#contents h2,
+#contents h3 {
+  font-size: 100%;
+  font-weight: bold;
+  border: 1px solid gray;
+}
+
+#contents h1 {
+  font-size: 150%;
+  text-align: center;
+}
+
+#contents h2 {
+  font-size: 120%;
+  padding-left: 8px;
 }
