@@ -19,11 +19,11 @@ text2html.formatText = function formatText(text) {
 
   var listMode = {};
   listMode.enter = {
-    test: function(str) { return /^＊+--/.test(str); },
-    action: function(str) { return '<pre class="execution">'; }
+    test: function(str) { return /^＋---/.test(str); },
+    action: function(str) { return '<pre class="list">'; }
   }
   listMode.exit = {
-    test: function(str) { return /^＊+--/.test(str); },
+    test: function(str) { return /^＋---/.test(str); },
     action: function(str) { return '</pre>'; }
   }
   listMode.flag = false;
