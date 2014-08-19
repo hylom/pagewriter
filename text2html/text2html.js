@@ -32,36 +32,48 @@ text2html.formatText = function formatText(text) {
     test: function(str) { return /^　/.test(str); },
     action: function(str) { return '<p>' + str + '</p>\n'; },
     break: true,
-  }
+  };
 
   var header1 = {
     test: function(str) { return /^■/.test(str); },
     action: function(str) { return '<h1>' + str.slice(1) + '</h1>\n'; },
     break: true,
-  }
+  };
 
   var header2 = {
     test: function(str) { return /^●/.test(str); },
     action: function(str) { return '<h2>' + str.slice(1) + '</h2>\n'; },
     break: true,
-  }
+  };
 
   var header3 = {
     test: function(str) { return /^○/.test(str); },
     action: function(str) { return '<h3>' + str + '</h3>\n'; },
     break: true,
-  }
+  };
+
+  var entitize = {
+    test: function(str) { return true; },
+    action: function(str) {
+      str = str.replace(/&/g, '&amp;');
+      str = str.replace(/</g, '&lt;');
+      str = str.replace(/>/g, '&gt;');
+      return str
+    },
+    break: false,
+  };
 
   var raw = {
     test: function(str) { return !(/^$/.test(str)); },
     action: function(str) { return str + '<br/>'; },
     break: false,
-  }
+  };
 
 
 
   var modes = [execMode, listMode];
   var converters = [
+    entitize,
     paragraph,
     header1,
     header2,
